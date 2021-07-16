@@ -22,5 +22,7 @@ composer install
 ## Execute command
 
 ```bash
- php -f export.php app:export-bookmarks 
+ php -f export.php export:bookmarks
+# Alias
+php -f export.php eb
 ```
