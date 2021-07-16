@@ -9,7 +9,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ExportCommand extends Command
 {
-    protected static $defaultName = 'app:export-bookmarks';
+    protected static $defaultName = 'export:bookmarks';
+
+    protected function configure()
+    {
+        $this
+            ->setAliases(['eb'])
+        ;
+    }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
@@ -32,14 +39,17 @@ class ExportCommand extends Command
                 foreach ($tags as $tag) {
                     $bookmark = new Bookmark;
 
-                    $bookmark->addDate      = (int)$tag->getAttribute('add_date');
-                    $bookmark->lastModified = (int)$tag->getAttribute('last_modified');
-                    $bookmark->title        = $tag->nodeValue;
-                    $bookmark->href         = $tag->getAttribute('href');
-                    $bookmark->icon         = $tag->getAttribute('icon');
-                    $bookmark->iconUri      = $tag->getAttribute('icon_uri');
+                    if(!empty($tag->getAttribute('href'))) {
+                        $bookmark->addDate      = (int)$tag->getAttribute('add_date');
+                        $bookmark->lastModified = (int)$tag->getAttribute('last_modified');
+                        $bookmark->title        = $tag->nodeValue;
+                        $bookmark->href         = $tag->getAttribute('href');
+                        $bookmark->icon         = $tag->getAttribute('icon');
+                        $bookmark->iconUri      = $tag->getAttribute('icon_uri');
 
-                    $jsonData[] = $bookmark;
+                        $jsonData[md5(($bookmark->href))] = $bookmark;
+                    }
+
                     $progressBar->advance();
                 }
                 $progressBar->finish();
