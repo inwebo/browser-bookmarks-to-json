@@ -1,0 +1,25 @@
+{
+  "name":        "inwebo/browser-bookmarks-to-json",
+  "description": "Convert browser's bookmarks HTML file to JSON",
+  "type":        "library",
+  "license":     "GPL-3.0-or-later",
+  "authors": [
+    {
+      "name": "inwebo"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "symfony/console": "^5.3",
+    "ext-dom": "*"
+  },
+  "autoload": {
+    "psr-4": { "Inwebo\\Browser\\": "" }
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "git@github.com:inwebo/country-code.git"
+    }
+  ]
+}
