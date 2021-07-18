@@ -3,3 +3,4 @@ vendor
 input/*.html
 input/*.csv
 output/*.json
+/vendor/
