@@ -1,0 +1,5 @@
+vendor
+.idea
+input/*.html
+input/*.csv
+output/*.json
